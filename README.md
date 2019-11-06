@@ -1,2 +1,2 @@
-# LeetCodeV2
-[算法] Code for LeetCode
+# LeetCode
+code for LeetCode by javascript
