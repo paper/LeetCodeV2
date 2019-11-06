@@ -61,3 +61,56 @@ var numSquares = function(n) {
     return dp[n];
 };
 
+/**
+ * Created by paper on 19/11/06.
+ * https://leetcode-cn.com/problems/perfect-squares/comments/
+ * 
+ * 更新算法，其实只要广度优先搜索，如果命中了其中一条路径，那么说明这条路径肯定是最短的，可以立即停止
+ * 
+ * @param {number} n
+ * @return {number}
+ */
+const numSquares = function (n) {
+  
+  let ret = 0;
+  let list = [n];
+  
+  let isFind = false;
+  
+  while (true) {
+    
+    if (isFind) {
+      break;
+    }
+    
+    ret += 1;
+    
+    let newList = [];
+    
+    walk: {
+      for(let i = 0; i < list.length; i++) {
+        const n = list[i];
+        
+        const max_v = Math.floor(Math.sqrt(n));
+        
+        for(let j = max_v; j >= 1; j--) {
+          const n2 = n - j * j;
+          
+          if (n2 === 0) {
+            isFind = true;
+            break walk;
+          } else {
+            newList.push(n2);
+          }
+        }
+        
+      }
+    } // end walk
+    
+    list = newList;
+    
+  } // end while
+  
+  return ret;
+};
+
